@@ -1,13 +1,15 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Phone, X } from "lucide-react";
+import { MessageCircle, Phone, X } from "lucide-react";
 import { useState } from "react";
 import { useScrolled } from "@/hooks/useScrolled";
+import { SOCIAL_LINKS, telHref } from "@/constants";
 
 export default function FloatButton() {
   const scrolled = useScrolled(300);
   const [open, setOpen] = useState(false);
+  const tel = telHref();
 
   return (
     <AnimatePresence>
@@ -26,29 +28,36 @@ export default function FloatButton() {
                 exit={{ opacity: 0, x: 20 }}
                 className="flex flex-col items-end gap-2"
               >
+                {tel ? (
+                  <a
+                    href={tel}
+                    className="flex items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-widest text-black shadow-xl transition-colors hover:bg-[#FF6B35] hover:text-white"
+                  >
+                    <Phone size={14} /> Call
+                  </a>
+                ) : null}
                 <a
-                  href="tel:#"
-                  className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold tracking-widest shadow-xl border border-gray-100 flex items-center gap-2 hover:bg-[#FF6B35] hover:text-white transition-colors uppercase"
+                  href={SOCIAL_LINKS.line}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-full bg-[#06C755] px-4 py-2 text-xs font-bold uppercase tracking-widest text-white shadow-xl transition-transform hover:scale-105"
                 >
-                  <Phone size={14} /> Call Us
-                </a>
-                <a
-                  href="#"
-                  className="bg-[#25D366] text-white px-4 py-2 rounded-full text-xs font-bold tracking-widest shadow-xl flex items-center gap-2 hover:scale-105 transition-transform uppercase"
-                >
-                  <MessageSquare size={14} /> WhatsApp
+                  <MessageCircle size={14} /> LINE
                 </a>
               </motion.div>
             )}
           </AnimatePresence>
 
           <button
+            type="button"
             onClick={() => setOpen(!open)}
-            className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 ${
+            className={`flex h-14 w-14 transform items-center justify-center rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 ${
               open ? "bg-black text-white" : "bg-[#FF6B35] text-white"
             }`}
+            aria-expanded={open}
+            aria-label={open ? "Close contact menu" : "Open contact menu"}
           >
-            {open ? <X /> : <MessageSquare />}
+            {open ? <X /> : <MessageCircle />}
           </button>
         </motion.div>
       )}

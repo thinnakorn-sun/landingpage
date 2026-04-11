@@ -3,13 +3,16 @@
 import { motion } from "framer-motion";
 import NextImage from "next/image";
 import { useLang } from "@/context/LangContext";
-import { HERO_TAGLINE, HERO_SUB, HERO_CTA, HERO_BULLETS } from "@/constants";
+import { HERO_SUB, HERO_CTA, HERO_BULLETS } from "@/constants";
 
 export default function HeroSection() {
   const { t } = useLang();
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-24 overflow-hidden border-b border-gray-50 scroll-mt-24">
+    <section
+      id="hero"
+      className="relative min-h-screen scroll-mt-28 overflow-hidden border-b border-gray-50 pb-20 pt-[7.5rem] md:pb-24 md:scroll-mt-32 md:pt-44 lg:pt-48"
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] border-[1px] border-black/[0.05] rounded-full" />
@@ -17,23 +20,6 @@ export default function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
         <div className="max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
-          >
-            <div className="relative h-20 w-64 md:h-28 md:w-80">
-              <NextImage
-                src="/logo.jpg"
-                alt="PINAHX Logo"
-                fill
-                className="object-contain object-left mix-blend-multiply"
-                priority
-              />
-            </div>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -84,18 +70,19 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Static Black Image Area */}
+        {/* Full-bleed brand banner (asset includes cube background + type) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-16 w-full max-w-5xl relative aspect-video"
+          className="mt-16 w-full max-w-5xl relative aspect-video overflow-hidden rounded-sm bg-neutral-950 shadow-2xl ring-1 ring-black/10"
         >
           <NextImage
-            src="/hero-bg.jpg"
-            alt="PINAHX Digital Studio"
+            src="/pinahx-hero-banner.jpg"
+            alt="PINAHX Digital Studio — digital content production"
             fill
-            className="object-cover"
+            sizes="(max-width: 1280px) 100vw, 1024px"
+            className="object-cover object-center"
             priority
           />
         </motion.div>

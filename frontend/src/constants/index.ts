@@ -10,15 +10,25 @@ import type {
 // ── Brand ──────────────────────────────────────────────────
 export const BRAND_NAME = "PINAHX";
 export const BRAND_EMAIL = "teams.skillup@gmail.com";
-export const BRAND_PHONE = ""; // fill when available
+/** เบอร์โทรสำหรับลิงก์ `tel:` — ว่างไว้ได้ถ้ายังไม่ใช้ปุ่มโทร */
+export const BRAND_PHONE = "";
 
 // ── Social Links ───────────────────────────────────────────
 export const SOCIAL_LINKS = {
+  /** แก้เป็นลิงก์ LINE Official / add friend จริงของแบรนด์ */
+  line: "https://line.me/R/ti/p/@pinahx",
   facebook: "https://www.facebook.com/pinahx",
   youtube: "https://www.youtube.com/pinahx",
-  instagram: "#", // placeholder
-  line: "#",      // placeholder
+  /** ว่าง = ยังไม่แสดงลิงก์ Instagram */
+  instagram: "",
 } as const;
+
+/** `tel:` สำหรับ BRAND_PHONE — คืน null ถ้ายังไม่ตั้งเบอร์ */
+export function telHref(): string | null {
+  const raw = BRAND_PHONE.replace(/[\s\-()]/g, "");
+  if (!raw) return null;
+  return `tel:${raw}`;
+}
 
 // ── Navigation ─────────────────────────────────────────────
 export const NAV_LINKS: NavLink[] = [

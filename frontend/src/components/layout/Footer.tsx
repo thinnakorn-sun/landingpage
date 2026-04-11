@@ -1,110 +1,164 @@
+"use client";
+
 import Image from "next/image";
-import { Share2, Camera, MessageCircle, ExternalLink, Mail } from "lucide-react";
+import { Share2, Camera, MessageCircle, Phone, PlayCircle, Mail } from "lucide-react";
 import { useLang } from "@/context/LangContext";
-import { BRAND_NAME, COPYRIGHT_YEAR, POLICY_LINKS, ABOUT_TEXT, SOCIAL_LINKS, BRAND_EMAIL } from "@/constants";
+import {
+  BRAND_NAME,
+  COPYRIGHT_YEAR,
+  POLICY_LINKS,
+  ABOUT_TEXT,
+  ABOUT_CTA,
+  SOCIAL_LINKS,
+  BRAND_EMAIL,
+  telHref,
+} from "@/constants";
+
+const iconBtn =
+  "flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition-all duration-300 hover:border-white/70 hover:bg-white/[0.06] hover:scale-[1.03] md:h-14 md:w-14";
 
 export default function Footer() {
   const { t } = useLang();
+  const tel = telHref();
+  const policiesRow1 = POLICY_LINKS.slice(0, 3);
+  const policiesRow2 = POLICY_LINKS.slice(3);
+
+  const socialRow = [
+    { key: "line", href: SOCIAL_LINKS.line, Icon: MessageCircle, label: "LINE", ext: true },
+    ...(tel
+      ? [{ key: "tel", href: tel, Icon: Phone, label: "Call", ext: false as const }]
+      : []),
+    ...(SOCIAL_LINKS.instagram
+      ? [
+          {
+            key: "ig",
+            href: SOCIAL_LINKS.instagram,
+            Icon: Camera,
+            label: "Instagram",
+            ext: true as const,
+          },
+        ]
+      : []),
+    { key: "fb", href: SOCIAL_LINKS.facebook, Icon: Share2, label: "Facebook", ext: true },
+    { key: "yt", href: SOCIAL_LINKS.youtube, Icon: PlayCircle, label: "YouTube", ext: true },
+  ];
 
   return (
-    <footer id="contact" className="bg-black text-white py-24 border-t border-white/5 scroll-mt-24">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        {/* Brand Logo - Direct Placement */}
-        <div className="mb-12 flex justify-center">
-          <img 
-            src="/logo.jpg" 
-            alt="PINAHX Logo" 
-            className="h-20 md:h-28 w-auto object-contain bg-white px-8 py-4 rounded-2xl"
-          />
+    <footer
+      id="contact"
+      className="scroll-mt-28 border-t border-white/[0.07] bg-black text-white md:scroll-mt-32"
+    >
+      <div className="mx-auto max-w-2xl px-6 py-20 text-center md:max-w-3xl md:py-28">
+        <div className="mb-10 flex justify-center md:mb-12">
+          <div className="relative h-[4.25rem] w-60 md:h-[4.75rem] md:w-64">
+            <Image
+              src="/logo.svg"
+              alt={BRAND_NAME}
+              fill
+              sizes="(max-width: 768px) 240px, 260px"
+              className="object-contain object-center brightness-0 invert"
+            />
+          </div>
         </div>
 
-        {/* About (12) */}
-        <p className="text-base md:text-lg text-gray-400 font-medium leading-relaxed mb-16 max-w-3xl mx-auto px-4 italic">
-          &quot;{t(ABOUT_TEXT)}&quot;
+        <p className="mx-auto mb-14 max-w-lg text-[0.9375rem] font-normal leading-[1.85] text-neutral-400 md:mb-16 md:text-base">
+          {t(ABOUT_TEXT)}
         </p>
 
-        {/* Contact CTA */}
-        <h3 className="text-xs font-black uppercase tracking-[0.5em] text-[#FF6B35] mb-12">
-          {t({ th: "ร่วมงานกับเรา", en: "WORK WITH US" })}
-        </h3>
+        <h2 className="mb-10 text-xl font-bold tracking-wide text-white md:mb-12 md:text-2xl">
+          {t(ABOUT_CTA)}
+        </h2>
 
-        {/* Social Icons */}
-        <div className="flex justify-center gap-6 md:gap-10 mb-16 px-4 flex-wrap">
-          <a href={SOCIAL_LINKS.line} className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-white/5 rounded-full hover:bg-[#FF6B35] transition-all hover:scale-110 shadow-lg border border-white/5" aria-label="Line">
-            <MessageCircle size={28} />
-          </a>
-          <a href={SOCIAL_LINKS.instagram} className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-white/5 rounded-full hover:bg-[#FF6B35] transition-all hover:scale-110 shadow-lg border border-white/5" aria-label="Instagram">
-            <Camera size={28} />
-          </a>
-          <a href={SOCIAL_LINKS.facebook} className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-white/5 rounded-full hover:bg-[#FF6B35] transition-all hover:scale-110 shadow-lg border border-white/5" aria-label="Facebook">
-            <Share2 size={28} />
-          </a>
-          <a href={SOCIAL_LINKS.youtube} className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-white/5 rounded-full hover:bg-[#FF6B35] transition-all hover:scale-110 shadow-lg border border-white/5" aria-label="YouTube">
-            <ExternalLink size={28} />
-          </a>
-        </div>
+        <div className="mx-auto mb-14 flex max-w-lg flex-col items-center justify-center gap-10 sm:max-w-none sm:flex-row sm:gap-12 md:mb-16 md:gap-16">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-end sm:gap-5">
+            {socialRow.map(({ key, href, Icon, label, ext }) => (
+              <a
+                key={key}
+                href={href}
+                {...(ext ? { target: "_blank", rel: "noopener noreferrer" as const } : {})}
+                className={iconBtn}
+                aria-label={label}
+              >
+                <Icon className="h-[1.35rem] w-[1.35rem] md:h-6 md:w-6" strokeWidth={1.65} />
+              </a>
+            ))}
+          </div>
 
-        {/* Contact Block (8) - From Image Reference */}
-        <div className="mb-20 flex flex-col items-center">
-          <h3 className="text-xl font-bold text-white mb-6">
-            Contact Us
-          </h3>
-          
-          {/* QR Code */}
-          <div className="bg-white p-3 rounded-lg mb-8 inline-block shadow-xl">
-            <div className="w-40 h-40 bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300 relative">
-              {/* Replace with real QR when available */}
-              <div className="absolute inset-2 bg-black/5 flex items-center justify-center">
-                <span className="font-black text-black tracking-widest bg-white px-2 py-1">LINE</span>
+          <a
+            href={SOCIAL_LINKS.line}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group shrink-0 rounded-2xl bg-white p-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.35)] ring-1 ring-black/5 transition-transform duration-300 hover:scale-[1.02]"
+            aria-label="LINE"
+          >
+            <div className="relative flex h-36 w-36 items-center justify-center rounded-xl bg-neutral-100 md:h-40 md:w-40">
+              <div
+                className="absolute inset-3 rounded-md border border-dashed border-neutral-300 bg-white"
+                aria-hidden
+              />
+              <div className="relative z-[1] flex flex-col items-center gap-1">
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-500">
+                  LINE
+                </span>
+                <span className="text-sm font-black tracking-tight text-neutral-900">
+                  {BRAND_NAME}
+                </span>
               </div>
             </div>
-          </div>
-
-          {/* Vertical Contact List */}
-          <div className="flex flex-col gap-4 text-left w-full max-w-[280px]">
-            {/* Line */}
-            <a href={SOCIAL_LINKS.line} className="flex items-center gap-4 py-2 border-b border-white/10 hover:border-[#FF6B35] transition-colors group">
-              <div className="w-8 h-8 bg-black border border-white/20 rounded-full flex items-center justify-center group-hover:bg-[#FF6B35] transition-colors">
-                <MessageCircle size={16} className="text-white" />
-              </div>
-              <span className="text-sm font-medium text-gray-300 group-hover:text-white">@PINAHX</span>
-            </a>
-            
-            {/* Email */}
-            <a href={`mailto:${BRAND_EMAIL}`} className="flex items-center gap-4 py-2 border-b border-white/10 hover:border-[#FF6B35] transition-colors group">
-              <div className="w-8 h-8 bg-black border border-white/20 rounded-full flex items-center justify-center group-hover:bg-[#FF6B35] transition-colors">
-                <Mail size={16} className="text-white" />
-              </div>
-              <span className="text-sm font-medium text-gray-300 group-hover:text-white">{BRAND_EMAIL}</span>
-            </a>
-            
-            {/* Facebook */}
-            <a href={SOCIAL_LINKS.facebook} className="flex items-center gap-4 py-2 border-b border-white/10 hover:border-[#FF6B35] transition-colors group">
-              <div className="w-8 h-8 bg-black border border-white/20 rounded-full flex items-center justify-center group-hover:bg-[#FF6B35] transition-colors">
-                <Share2 size={16} className="text-white" />
-              </div>
-              <span className="text-sm font-medium text-gray-300 group-hover:text-white">PINAHX</span>
-            </a>
-          </div>
+          </a>
         </div>
 
-        {/* Copyright */}
-        <p className="text-[10px] text-gray-600 font-bold tracking-[0.4em] uppercase mb-10">
+        <a
+          href={`mailto:${BRAND_EMAIL}`}
+          className="mx-auto mb-14 inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-white md:mb-16"
+        >
+          <Mail className="h-4 w-4 shrink-0 opacity-70" strokeWidth={1.75} />
+          {BRAND_EMAIL}
+        </a>
+
+        <p className="mb-10 text-xs text-neutral-500 md:text-sm">
           © {COPYRIGHT_YEAR} {BRAND_NAME}
         </p>
 
-        {/* Policy Links */}
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 opacity-30 hover:opacity-100 transition-opacity">
-          {POLICY_LINKS.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              className="text-[9px] font-bold uppercase tracking-widest hover:text-[#FF6B35] transition-colors"
-            >
-              {t(link.label)}
-            </a>
-          ))}
-        </div>
+        <nav
+          className="mx-auto max-w-lg space-y-2 text-[10px] leading-relaxed text-neutral-500 md:max-w-2xl md:text-[11px]"
+          aria-label="Legal"
+        >
+          <div className="flex flex-wrap items-center justify-center gap-y-1">
+            {policiesRow1.map((link, i) => (
+              <span key={link.id} className="inline-flex items-center">
+                {i > 0 ? (
+                  <span className="select-none px-1.5 text-neutral-600 md:px-2" aria-hidden>
+                    |
+                  </span>
+                ) : null}
+                <a
+                  href={link.href}
+                  className="whitespace-nowrap px-0.5 transition-colors hover:text-neutral-300"
+                >
+                  {t(link.label)}
+                </a>
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-y-1">
+            {policiesRow2.map((link, i) => (
+              <span key={link.id} className="inline-flex items-center">
+                {i > 0 ? (
+                  <span className="select-none px-1.5 text-neutral-600 md:px-2" aria-hidden>
+                    |
+                  </span>
+                ) : null}
+                <a
+                  href={link.href}
+                  className="whitespace-nowrap px-0.5 transition-colors hover:text-neutral-300"
+                >
+                  {t(link.label)}
+                </a>
+              </span>
+            ))}
+          </div>
+        </nav>
       </div>
     </footer>
   );
