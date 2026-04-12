@@ -5,42 +5,62 @@ import React, {
   useContext,
   useState,
   useCallback,
+  useEffect,
   type ReactNode,
 } from "react";
-import type { Lang, BilingualText } from "@/types";
+import type { Lang, L10nString } from "@/types";
 
-// ── Types ──────────────────────────────────────────────────
+export const LANG_OPTIONS: { code: Lang; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "th", label: "TH" },
+  { code: "zh", label: "中文" },
+  { code: "ja", label: "日本語" },
+  { code: "ko", label: "한국어" },
+];
+
+const HTML_LANG: Record<Lang, string> = {
+  en: "en",
+  th: "th",
+  zh: "zh-Hans",
+  ja: "ja",
+  ko: "ko",
+};
+
 interface LangContextValue {
   lang: Lang;
-  toggleLang: () => void;
-  t: (text: BilingualText) => string;
+  setLang: (lang: Lang) => void;
+  t: (text: L10nString) => string;
 }
 
-// ── Context ────────────────────────────────────────────────
 const LangContext = createContext<LangContextValue | undefined>(undefined);
 
-// ── Provider ───────────────────────────────────────────────
-export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("th");
+function syncDocumentLang(lang: Lang) {
+  if (typeof document === "undefined") return;
+  document.documentElement.lang = HTML_LANG[lang];
+  document.documentElement.setAttribute("data-lang", lang);
+}
 
-  const toggleLang = useCallback(() => {
-    setLang((prev) => (prev === "th" ? "en" : "th"));
+export function LangProvider({ children }: { children: ReactNode }) {
+  const [lang, setLangState] = useState<Lang>("en");
+
+  const setLang = useCallback((next: Lang) => {
+    setLangState(next);
+    syncDocumentLang(next);
   }, []);
 
-  /** Translate a bilingual text object to the current language */
-  const t = useCallback(
-    (text: BilingualText): string => text[lang],
-    [lang]
-  );
+  useEffect(() => {
+    syncDocumentLang(lang);
+  }, [lang]);
+
+  const t = useCallback((text: L10nString): string => text[lang], [lang]);
 
   return (
-    <LangContext.Provider value={{ lang, toggleLang, t }}>
+    <LangContext.Provider value={{ lang, setLang, t }}>
       {children}
     </LangContext.Provider>
   );
 }
 
-// ── Hook ───────────────────────────────────────────────────
 export function useLang(): LangContextValue {
   const ctx = useContext(LangContext);
   if (!ctx) throw new Error("useLang must be used within <LangProvider>");

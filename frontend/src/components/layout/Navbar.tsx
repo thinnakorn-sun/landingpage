@@ -5,12 +5,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLang } from "@/context/LangContext";
+import { useLang, LANG_OPTIONS } from "@/context/LangContext";
 import { useScrolled } from "@/hooks/useScrolled";
-import { NAV_LINKS } from "@/constants";
+import { NAV_LINKS, NAV_CONTACT_CTA } from "@/constants";
+import type { Lang } from "@/types";
 
 export default function Navbar() {
-  const { lang, toggleLang, t } = useLang();
+  const { lang, setLang, t } = useLang();
   const scrolled = useScrolled(8);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -29,7 +30,6 @@ export default function Navbar() {
           className="flex shrink-0 items-center"
           onClick={handleNavClick}
         >
-          {/* Vector สีดำทึบ — อ่านชัดบนพื้นขาวกว่าไฟล์รูปเทา */}
           <Image
             src="/logo.svg"
             alt="PINAHX Digital Studio"
@@ -54,23 +54,28 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3 md:gap-4">
-          <button
-            type="button"
-            onClick={toggleLang}
-            className="hidden items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-neutral-400 transition-colors hover:text-black md:flex"
-            aria-label="Toggle language"
-          >
-            <span className={lang === "th" ? "text-black" : undefined}>TH</span>
-            <span className="text-neutral-300">|</span>
-            <span className={lang === "en" ? "text-black" : undefined}>EN</span>
-          </button>
+        <div className="flex items-center gap-2 md:gap-3">
+          <label className="hidden items-center gap-1.5 md:flex">
+            <span className="sr-only">Language</span>
+            <select
+              value={lang}
+              onChange={(e) => setLang(e.target.value as Lang)}
+              className="max-w-[7.5rem] cursor-pointer rounded-md border border-neutral-200 bg-white py-1.5 pl-2 pr-7 text-[11px] font-semibold text-neutral-700 transition-colors hover:border-neutral-400 focus:border-black focus:outline-none"
+              aria-label="Language"
+            >
+              {LANG_OPTIONS.map((o) => (
+                <option key={o.code} value={o.code}>
+                  {o.label}
+                </option>
+              ))}
+            </select>
+          </label>
 
           <Link
             href="#contact"
             className="hidden rounded-md bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-neutral-800 md:inline-flex"
           >
-            {t({ th: "ติดต่อเรา", en: "Contact" })}
+            {t(NAV_CONTACT_CTA)}
           </Link>
 
           <button
@@ -105,20 +110,29 @@ export default function Navbar() {
                   {t(link.label)}
                 </Link>
               ))}
-              <div className="mt-2 flex items-center gap-3 border-t border-neutral-100 pt-4">
-                <button
-                  type="button"
-                  onClick={toggleLang}
-                  className="text-xs font-semibold uppercase tracking-wide text-neutral-500"
-                >
-                  {lang === "th" ? "EN" : "TH"}
-                </button>
+              <div className="mt-2 flex flex-col gap-3 border-t border-neutral-100 pt-4">
+                <label className="flex flex-col gap-1">
+                  <span className="text-[10px] font-semibold uppercase tracking-wide text-neutral-500">
+                    Language
+                  </span>
+                  <select
+                    value={lang}
+                    onChange={(e) => setLang(e.target.value as Lang)}
+                    className="w-full rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm font-medium text-neutral-800"
+                  >
+                    {LANG_OPTIONS.map((o) => (
+                      <option key={o.code} value={o.code}>
+                        {o.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
                 <Link
                   href="#contact"
                   onClick={handleNavClick}
-                  className="flex-1 rounded-md bg-black py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-white"
+                  className="rounded-md bg-black py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-white"
                 >
-                  {t({ th: "ติดต่อเรา", en: "Contact" })}
+                  {t(NAV_CONTACT_CTA)}
                 </Link>
               </div>
             </div>

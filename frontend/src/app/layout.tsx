@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Kanit } from "next/font/google";
+import { Kanit, Noto_Sans_JP, Noto_Sans_KR, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import { LangProvider } from "@/context/LangContext";
 import { getSiteUrl } from "@/lib/site";
@@ -8,6 +8,28 @@ const kanit = Kanit({
   subsets: ["latin", "thai"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-kanit",
+  display: "swap",
+});
+
+const notoSansSC = Noto_Sans_SC({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-noto-sc",
+  display: "swap",
+});
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-noto-jp",
+  display: "swap",
+});
+
+const notoSansKR = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-noto-kr",
+  display: "swap",
 });
 
 const site = getSiteUrl();
@@ -30,7 +52,7 @@ export const metadata: Metadata = {
   authors: [{ name: "PINAHX" }],
   openGraph: {
     type: "website",
-    locale: "th_TH",
+    locale: "en_US",
     url: "/",
     siteName: "PINAHX",
     title: "PINAHX — NOT JUST CONTENT IT'S YOUR GROWTH",
@@ -52,7 +74,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th" className={`${kanit.variable} scroll-smooth`}>
+    <html
+      lang="en"
+      data-lang="en"
+      className={`${kanit.variable} ${notoSansSC.variable} ${notoSansJP.variable} ${notoSansKR.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <body className="font-sans antialiased text-black bg-white">
         <LangProvider>
           {children}

@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { useLang } from "@/context/LangContext";
+import { PARTNER_TRUSTED } from "@/constants";
 
 const PARTNERS = [
   { id: 1, src: "/partners/p1.jpg", alt: "Oshikawa Gasket Products" },
@@ -12,23 +14,21 @@ const PARTNERS = [
 ];
 
 export default function PartnerMarquee() {
-  // Duplicate for smooth seamless loop
+  const { t } = useLang();
   const duplicatedPartners = [...PARTNERS, ...PARTNERS, ...PARTNERS];
 
   return (
     <section className="py-20 bg-white overflow-hidden border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
         <h2 className="text-sm md:text-base font-semibold tracking-[0.2em] text-gray-400 uppercase">
-          Trusted by Innovative Brands
+          {t(PARTNER_TRUSTED)}
         </h2>
       </div>
 
       <div className="flex whitespace-nowrap relative w-full group">
-        {/* Transparent gradient masks for smooth fade in/out at edges */}
         <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-        {/* First Marquee Track */}
         <div className="animate-marquee flex items-center justify-around min-w-full">
           {duplicatedPartners.map((partner, index) => (
             <div
@@ -46,7 +46,6 @@ export default function PartnerMarquee() {
           ))}
         </div>
 
-        {/* Second Marquee Track (for seamless loop) */}
         <div className="animate-marquee flex items-center justify-around min-w-full" aria-hidden="true">
           {duplicatedPartners.map((partner, index) => (
             <div

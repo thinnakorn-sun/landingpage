@@ -3,17 +3,24 @@
 import { motion } from "framer-motion";
 import NextImage from "next/image";
 import { useLang } from "@/context/LangContext";
-import { HERO_SUB, HERO_CTA, HERO_BULLETS } from "@/constants";
+import { HERO_HEADLINE, HERO_SUB, HERO_CTA, HERO_BULLETS } from "@/constants";
+import type { HeadlineTone } from "@/types";
+
+function toneClass(tone: HeadlineTone): string {
+  if (tone === "muted") return "text-gray-300";
+  if (tone === "accent") return "text-[#FF6B35]";
+  return "text-black";
+}
 
 export default function HeroSection() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
+  const lines = HERO_HEADLINE[lang];
 
   return (
     <section
       id="hero"
       className="relative min-h-screen scroll-mt-28 overflow-hidden border-b border-gray-50 pb-20 pt-[7.5rem] md:pb-24 md:scroll-mt-32 md:pt-44 lg:pt-48"
     >
-      {/* Background decoration */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] border-[1px] border-black/[0.05] rounded-full" />
       </div>
@@ -24,12 +31,16 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-[12vw] sm:text-[10vw] lg:text-[7rem] font-black leading-[0.85] tracking-tighter text-black uppercase mb-10"
+            className={[
+              "text-[11vw] sm:text-[9vw] lg:text-[5.25rem] font-black leading-[0.92] tracking-tighter mb-10",
+              lang === "en" ? "uppercase" : "normal-case",
+            ].join(" ")}
           >
-            NOT JUST <br />
-            CONTENT <br />
-            <span className="text-gray-300">IT&apos;S YOUR</span> <br />
-            <span className="text-[#FF6B35]">GROWTH</span>
+            {lines.map((seg, i) => (
+              <span key={i} className="block">
+                <span className={toneClass(seg.tone)}>{seg.text}</span>
+              </span>
+            ))}
           </motion.h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -41,7 +52,7 @@ export default function HeroSection() {
               <p className="text-base sm:text-lg text-gray-500 mb-8 whitespace-pre-line leading-relaxed font-medium">
                 {t(HERO_SUB)}
               </p>
-              
+
               <div className="flex flex-wrap gap-4">
                 <a
                   href="#gallery"
@@ -60,8 +71,13 @@ export default function HeroSection() {
             >
               {HERO_BULLETS.map((bullet, i) => (
                 <li key={i} className="flex items-center gap-4 group">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] group-hover:scale-150 transition-transform" />
-                  <span className="text-xs sm:text-sm font-black uppercase tracking-widest text-black/80 group-hover:text-black transition-colors">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] group-hover:scale-150 transition-transform shrink-0" />
+                  <span
+                    className={[
+                      "text-xs sm:text-sm font-black text-black/80 group-hover:text-black transition-colors",
+                      lang === "en" ? "uppercase tracking-widest" : "tracking-wide",
+                    ].join(" ")}
+                  >
                     {t(bullet)}
                   </span>
                 </li>
@@ -70,7 +86,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Full-bleed brand banner (asset includes cube background + type) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -88,8 +103,6 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-
-      {/* Scroll indicator (Moved to bottom right to avoid overlap) */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}

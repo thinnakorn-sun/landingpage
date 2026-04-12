@@ -107,4 +107,13 @@
   html {
     @apply scroll-smooth;
   }
+  html[data-lang="zh"] body {
+    font-family: var(--font-noto-sc), var(--font-kanit), ui-sans-serif, system-ui, sans-serif;
+  }
+  html[data-lang="ja"] body {
+    font-family: var(--font-noto-jp), var(--font-kanit), ui-sans-serif, system-ui, sans-serif;
+  }
+  html[data-lang="ko"] body {
+    font-family: var(--font-noto-kr), var(--font-kanit), ui-sans-serif, system-ui, sans-serif;
+  }
 }

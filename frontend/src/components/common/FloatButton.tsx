@@ -5,11 +5,21 @@ import { MessageCircle, Phone, X } from "lucide-react";
 import { useState } from "react";
 import { useScrolled } from "@/hooks/useScrolled";
 import { SOCIAL_LINKS, telHref } from "@/constants";
+import { useLang } from "@/context/LangContext";
+
+const CALL_LABEL = {
+  en: "Call",
+  th: "โทร",
+  zh: "致电",
+  ja: "電話",
+  ko: "전화",
+} as const;
 
 export default function FloatButton() {
   const scrolled = useScrolled(300);
   const [open, setOpen] = useState(false);
   const tel = telHref();
+  const { lang } = useLang();
 
   return (
     <AnimatePresence>
@@ -33,7 +43,7 @@ export default function FloatButton() {
                     href={tel}
                     className="flex items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-widest text-black shadow-xl transition-colors hover:bg-[#FF6B35] hover:text-white"
                   >
-                    <Phone size={14} /> Call
+                    <Phone size={14} /> {CALL_LABEL[lang]}
                   </a>
                 ) : null}
                 <a

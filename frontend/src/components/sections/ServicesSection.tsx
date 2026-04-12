@@ -2,7 +2,12 @@
 
 import { motion } from "framer-motion";
 import { useLang } from "@/context/LangContext";
-import { SERVICES } from "@/constants";
+import {
+  SERVICES,
+  SERVICES_KICKER,
+  SERVICES_TITLE,
+  SERVICES_INTRO,
+} from "@/constants";
 
 export default function ServicesSection() {
   const { t } = useLang();
@@ -13,21 +18,18 @@ export default function ServicesSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
             <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#FF6B35] mb-4 block">
-              01 — OUR EXPERTISE
+              {t(SERVICES_KICKER)}
             </span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-black leading-none">
-              WHAT WE DO
+              {t(SERVICES_TITLE)}
             </h2>
           </div>
           <p className="text-gray-500 max-w-sm text-sm font-medium leading-relaxed">
-            {t({
-              th: "เรามีบริการที่ครอบคลุมทุกด้านของสื่อดิจิทัล เพื่อให้เติบโตไปพร้อมกับแบรนด์ของคุณ",
-              en: "We offer comprehensive services covering all aspects of digital media to grow alongside your brand.",
-            })}
+            {t(SERVICES_INTRO)}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px bg-gray-100 border border-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border border-gray-100">
           {SERVICES.map((service, index) => (
             <motion.div
               key={service.id}
@@ -46,7 +48,7 @@ export default function ServicesSection() {
               <p className="text-sm text-gray-500 leading-relaxed group-hover:text-gray-400 transition-colors">
                 {t(service.description)}
               </p>
-              
+
               <div className="mt-auto pt-8">
                 <div className="w-8 h-[2px] bg-gray-200 group-hover:bg-[#FF6B35] group-hover:w-12 transition-all duration-500" />
               </div>

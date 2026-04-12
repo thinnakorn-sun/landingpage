@@ -4,12 +4,19 @@ import { motion } from "framer-motion";
 import { useLang } from "@/context/LangContext";
 import { ABOUT_TEXT, ABOUT_CTA } from "@/constants";
 
+const VISION_TITLE = {
+  en: "Our vision",
+  th: "วิสัยทัศน์ของเรา",
+  zh: "我们的愿景",
+  ja: "私たちのビジョン",
+  ko: "비전",
+} as const;
+
 export default function AboutSection() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
 
   return (
-    <section id="about" className="py-32 bg-white relative overflow-hidden">
-      {/* Decorative vertical lines */}
+    <section id="about-vision" className="py-32 bg-white relative overflow-hidden">
       <div className="absolute inset-y-0 left-[10%] w-px bg-gray-50 pointer-events-none" />
       <div className="absolute inset-y-0 left-[50%] w-px bg-gray-50 pointer-events-none" />
       <div className="absolute inset-y-0 right-[10%] w-px bg-gray-50 pointer-events-none" />
@@ -24,18 +31,25 @@ export default function AboutSection() {
           >
             03 — OUR VISION
           </motion.span>
-          
-          <motion.div
+
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-12"
+            className="text-3xl sm:text-4xl font-black text-black leading-tight tracking-tighter uppercase mb-10"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black leading-[1.1] tracking-tighter uppercase mb-10">
-              {t(ABOUT_TEXT)}
-            </h2>
-          </motion.div>
+            {VISION_TITLE[lang]}
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 max-w-3xl text-base text-neutral-600 leading-relaxed md:text-lg"
+          >
+            {t(ABOUT_TEXT)}
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
