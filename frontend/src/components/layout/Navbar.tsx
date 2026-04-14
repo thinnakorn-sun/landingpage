@@ -26,30 +26,30 @@ export default function Navbar() {
           : "border-b border-transparent",
       ].join(" ")}
     >
-      <nav className="mx-auto flex h-[5.75rem] max-w-7xl items-center justify-between gap-6 px-5 md:h-[6.5rem] md:px-10">
+      <nav className="mx-auto flex h-[5rem] w-full max-w-7xl items-center gap-4 px-5 md:h-[5.5rem] md:gap-6 md:px-10">
         <Link
           href="#hero"
           className="flex shrink-0 items-center py-1"
           onClick={handleNavClick}
         >
-          <div className="relative h-[3.1rem] w-[8.25rem] overflow-hidden sm:h-[3.4rem] sm:w-[9.25rem] md:h-[3.8rem] md:w-[10.5rem]">
+          <div className="relative h-[2.55rem] w-[6.8rem] overflow-hidden sm:h-[2.8rem] sm:w-[7.5rem] md:h-[3rem] md:w-[8.2rem]">
             <Image
               src={BRAND_LOGO_SRC}
               alt="PINAHX Digital Studio"
               fill
-              className="object-cover object-center scale-[1.45]"
-              sizes="(max-width: 640px) 132px, (max-width: 1024px) 148px, 168px"
+              className="object-cover object-center scale-[1.42]"
+              sizes="(max-width: 640px) 110px, (max-width: 1024px) 125px, 132px"
               priority
             />
           </div>
         </Link>
 
-        <ul className="hidden items-center gap-9 md:flex md:gap-11">
+        <ul className="ml-auto hidden items-center gap-7 md:flex md:gap-9">
           {NAV_LINKS.map((link) => (
             <li key={link.id}>
               <Link
                 href={link.href}
-                className="text-[15px] font-semibold tracking-[0.01em] text-neutral-800 transition-colors hover:text-black"
+                className="text-[14px] font-semibold tracking-[0.01em] text-neutral-800 transition-colors hover:text-black"
               >
                 {t(link.label)}
               </Link>
@@ -57,13 +57,13 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2 md:gap-3.5">
+        <div className="flex shrink-0 items-center gap-2 md:gap-3">
           <label className="hidden items-center gap-2 md:flex">
             <span className="sr-only">Language</span>
             <select
               value={lang}
               onChange={(e) => setLang(e.target.value as Lang)}
-              className="max-w-[8.25rem] cursor-pointer rounded-lg border border-neutral-200 bg-white py-2.5 pl-3 pr-8 text-[13px] font-semibold text-neutral-700 transition-colors hover:border-neutral-400 focus:border-black focus:outline-none"
+              className="max-w-[7.5rem] cursor-pointer rounded-xl border border-neutral-200 bg-white py-2 pl-2.5 pr-8 text-[12px] font-semibold text-neutral-700 shadow-sm transition-colors hover:border-neutral-400 focus:border-black focus:outline-none"
               aria-label="Language"
             >
               {LANG_OPTIONS.map((o) => (
@@ -76,7 +76,7 @@ export default function Navbar() {
 
           <Link
             href="#contact"
-            className="hidden rounded-lg bg-black px-5.5 py-2.5 text-[13px] font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-neutral-800 md:inline-flex"
+            className="hidden rounded-xl bg-black px-5 py-2.5 text-[12px] font-bold uppercase tracking-[0.06em] text-white shadow-sm transition-colors hover:bg-neutral-800 md:inline-flex"
           >
             {t(NAV_CONTACT_CTA)}
           </Link>
