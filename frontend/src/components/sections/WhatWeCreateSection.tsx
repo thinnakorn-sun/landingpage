@@ -12,7 +12,10 @@ export default function WhatWeCreateSection() {
   const { t } = useLang();
 
   return (
-    <section className="py-24 bg-white border-t border-gray-50">
+    <section
+      id="what-we-create"
+      className="scroll-mt-28 border-t border-gray-50 bg-white py-24 md:scroll-mt-32"
+    >
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

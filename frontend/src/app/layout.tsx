@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
-import { Kanit, Noto_Sans_JP, Noto_Sans_KR, Noto_Sans_SC } from "next/font/google";
+import {
+  Kanit,
+  Noto_Sans_JP,
+  Noto_Sans_KR,
+  Noto_Sans_SC,
+} from "next/font/google";
 import "./globals.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { LangProvider } from "@/context/LangContext";
 import { getSiteUrl } from "@/lib/site";
+
+config.autoAddCss = false;
 
 const kanit = Kanit({
   subsets: ["latin", "thai"],
@@ -81,9 +90,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="font-sans antialiased text-black bg-white">
-        <LangProvider>
-          {children}
-        </LangProvider>
+        <LangProvider>{children}</LangProvider>
       </body>
     </html>
   );

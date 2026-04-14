@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import NextImage from "next/image";
 import { useLang } from "@/context/LangContext";
 import { HERO_HEADLINE, HERO_SUB, HERO_CTA, HERO_BULLETS } from "@/constants";
+import WorkUpdatesPanel from "@/components/sections/WorkUpdatesPanel";
+import PartnerMarquee from "@/components/sections/PartnerMarquee";
 import type { HeadlineTone } from "@/types";
 
 function toneClass(tone: HeadlineTone): string {
@@ -19,20 +20,21 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen scroll-mt-28 overflow-hidden border-b border-gray-50 pb-20 pt-[7.5rem] md:pb-24 md:scroll-mt-32 md:pt-44 lg:pt-48"
+      className="relative scroll-mt-28 overflow-hidden border-b border-gray-50 bg-white pb-16 pt-[7.5rem] md:scroll-mt-32 md:pb-20 md:pt-44 lg:pt-48"
     >
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-        <div className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] border-[1px] border-black/[0.05] rounded-full" />
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-20">
+        <div className="absolute right-[10%] top-[20%] h-[40vw] w-[40vw] rounded-full border border-black/[0.05]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
         <div className="max-w-4xl">
+          {/* หัวข้อหลัก — โลโก้แบรนด์อยู่ที่ Navbar เท่านั้น */}
           <motion.h1
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.75, ease: "easeOut" }}
             className={[
-              "text-[11vw] sm:text-[9vw] lg:text-[5.25rem] font-black leading-[0.92] tracking-tighter mb-10",
+              "mb-8 text-[11vw] font-black leading-[0.92] tracking-tighter sm:text-[9vw] lg:mb-10 lg:text-[5.25rem]",
               lang === "en" ? "uppercase" : "normal-case",
             ].join(" ")}
           >
@@ -43,78 +45,80 @@ export default function HeroSection() {
             ))}
           </motion.h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <p className="text-base sm:text-lg text-gray-500 mb-8 whitespace-pre-line leading-relaxed font-medium">
-                {t(HERO_SUB)}
-              </p>
+          {/* ย่อหน้า */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.15 }}
+            className="mb-8 max-w-2xl text-base font-medium leading-relaxed text-gray-500 sm:text-lg md:mb-10"
+          >
+            {t(HERO_SUB)}
+          </motion.p>
 
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="#gallery"
-                  className="px-8 py-4 bg-black text-white text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-[#FF6B35] transition-all duration-300"
+          {/* CTA ไป WHAT WE CREATE */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.25 }}
+            className="mb-10 md:mb-12"
+          >
+            <a
+              href="#what-we-create"
+              className={[
+                "inline-flex items-center justify-center bg-black px-8 py-4 text-[10px] font-bold tracking-[0.2em] text-white transition-all duration-300 hover:bg-[#FF6B35]",
+                lang === "en" ? "uppercase" : "",
+              ].join(" ")}
+            >
+              {t(HERO_CTA)}
+            </a>
+          </motion.div>
+
+          {/* รายการบริการ (คอลัมน์เดียว) */}
+          <motion.ul
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.35 }}
+            className="max-w-xl space-y-3"
+          >
+            {HERO_BULLETS.map((bullet, i) => (
+              <li key={i} className="group flex items-center gap-4">
+                <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B35] transition-transform group-hover:scale-150" />
+                <span
+                  className={[
+                    "text-xs font-black text-black/80 transition-colors group-hover:text-black sm:text-sm",
+                    lang === "en"
+                      ? "uppercase tracking-widest"
+                      : "tracking-wide",
+                  ].join(" ")}
                 >
-                  {t(HERO_CTA)}
-                </a>
-              </div>
-            </motion.div>
-
-            <motion.ul
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="space-y-3"
-            >
-              {HERO_BULLETS.map((bullet, i) => (
-                <li key={i} className="flex items-center gap-4 group">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] group-hover:scale-150 transition-transform shrink-0" />
-                  <span
-                    className={[
-                      "text-xs sm:text-sm font-black text-black/80 group-hover:text-black transition-colors",
-                      lang === "en" ? "uppercase tracking-widest" : "tracking-wide",
-                    ].join(" ")}
-                  >
-                    {t(bullet)}
-                  </span>
-                </li>
-              ))}
-            </motion.ul>
-          </div>
+                  {t(bullet)}
+                </span>
+              </li>
+            ))}
+          </motion.ul>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-16 w-full max-w-5xl relative aspect-video overflow-hidden rounded-sm bg-neutral-950 shadow-2xl ring-1 ring-black/10"
-        >
-          <NextImage
-            src="/pinahx-hero-banner.jpg"
-            alt="PINAHX Digital Studio — digital content production"
-            fill
-            sizes="(max-width: 1280px) 100vw, 1024px"
-            className="object-cover object-center"
-            priority
-          />
-        </motion.div>
       </div>
+
+      {/* แบนเนอร์ + OUR WORK */}
+      <WorkUpdatesPanel />
+
+      {/* พาร์ทเนอร์ / โลโก้ไหล */}
+      <PartnerMarquee />
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 1 }}
-        className="absolute bottom-10 right-10 hidden md:flex items-center gap-6"
+        transition={{ delay: 1.1, duration: 1 }}
+        className="absolute bottom-6 right-6 hidden items-center gap-6 md:flex lg:bottom-10 lg:right-10"
       >
-        <span className="text-[9px] font-black tracking-[0.6em] uppercase text-gray-300">SCROLL</span>
-        <div className="w-12 h-px bg-gradient-to-r from-gray-200 to-transparent relative overflow-hidden">
+        <span className="text-[9px] font-black uppercase tracking-[0.6em] text-gray-300">
+          SCROLL
+        </span>
+        <div className="relative h-px w-12 overflow-hidden bg-gradient-to-r from-gray-200 to-transparent">
           <motion.div
             animate={{ x: [-48, 48] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-            className="absolute top-0 left-0 h-full w-1/2 bg-[#FF6B35]"
+            className="absolute left-0 top-0 h-full w-1/2 bg-[#FF6B35]"
           />
         </div>
       </motion.div>

@@ -7,25 +7,13 @@ import { GALLERY_HEADING, BRAND_TAGLINE, BRAND_MANIFESTO } from "@/constants";
 export default function BrandSection() {
   const { t } = useLang();
 
-  const brands = [
-    { name: "PACIFIC PARK", id: 1 },
-    { name: "MIS MAMO", id: 2 },
-    { name: "BRAND C", id: 3 },
-    { name: "BRAND D", id: 4 },
-  ];
-
   return (
-    <section id="about" className="py-24 bg-white border-b border-gray-50 scroll-mt-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-wrap items-center justify-center gap-12 md:gap-24 mb-24 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-          {brands.map((brand) => (
-            <div key={brand.id} className="text-xl md:text-2xl font-black tracking-tighter text-black uppercase">
-              {brand.name}
-            </div>
-          ))}
-        </div>
-
-        <div className="max-w-4xl mx-auto text-center">
+    <section
+      id="about"
+      className="scroll-mt-24 border-b border-gray-50 bg-white py-24"
+    >
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-4xl text-center">
           <motion.h2
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

@@ -33,7 +33,7 @@ export default function PartnerMarquee() {
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`partner-1-${index}`}
-              className="flex-shrink-0 mx-8 md:mx-16 relative h-20 w-36 md:h-28 md:w-48 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+              className="relative mx-8 h-20 w-36 shrink-0 md:mx-16 md:h-28 md:w-48"
             >
               <Image
                 src={partner.src}
@@ -46,11 +46,14 @@ export default function PartnerMarquee() {
           ))}
         </div>
 
-        <div className="animate-marquee flex items-center justify-around min-w-full" aria-hidden="true">
+        <div
+          className="animate-marquee flex items-center justify-around min-w-full"
+          aria-hidden="true"
+        >
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`partner-2-${index}`}
-              className="flex-shrink-0 mx-8 md:mx-16 relative h-20 w-36 md:h-28 md:w-48 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+              className="relative mx-8 h-20 w-36 shrink-0 md:mx-16 md:h-28 md:w-48"
             >
               <Image
                 src={partner.src}
