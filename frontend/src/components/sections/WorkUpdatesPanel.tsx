@@ -52,7 +52,7 @@ export default function WorkUpdatesPanel() {
         <div className="mx-auto max-w-3xl">
           <h2
             id="work-updates-heading"
-            className="mb-6 text-left text-4xl font-black uppercase tracking-tighter leading-none text-black sm:mb-8 sm:text-5xl md:text-6xl"
+            className="mb-6 text-left text-[clamp(1.55rem,7vw,2.25rem)] font-black uppercase tracking-tighter leading-[1.02] text-black sm:mb-8 sm:text-5xl md:text-6xl"
           >
             {t(WORK_UPDATES_TITLE)}
           </h2>

@@ -20,7 +20,7 @@ export default function WhatWeCreateSection() {
           className="space-y-12"
         >
           <div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-black leading-none mb-4">
+            <h2 className="text-[clamp(1.55rem,7vw,2.25rem)] sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-black leading-none mb-4">
               {t(WWC_SECTION_TITLE)}
             </h2>
           </div>
