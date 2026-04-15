@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useLang } from "@/context/LangContext";
 import { HERO_HEADLINE, HERO_SUB, HERO_CTA, HERO_BULLETS } from "@/constants";
 import WorkUpdatesPanel from "@/components/sections/WorkUpdatesPanel";
-import PartnerMarquee from "@/components/sections/PartnerMarquee";
 import type { HeadlineTone } from "@/types";
 
 function toneClass(tone: HeadlineTone): string {
@@ -101,9 +100,6 @@ export default function HeroSection() {
 
       {/* แบนเนอร์ + OUR WORK */}
       <WorkUpdatesPanel />
-
-      {/* พาร์ทเนอร์ / โลโก้ไหล */}
-      <PartnerMarquee />
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}

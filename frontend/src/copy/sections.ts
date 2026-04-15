@@ -12,10 +12,50 @@ import type {
 const L = (o: Record<Lang, string>): L10nString => o;
 
 export const NAV_LINKS: NavLink[] = [
-  { id: "services", label: L({ en: "Services", th: "บริการ", zh: "服务", ja: "サービス", ko: "서비스" }), href: "#services" },
-  { id: "gallery", label: L({ en: "Gallery", th: "ผลงาน", zh: "作品", ja: "ギャラリー", ko: "갤러리" }), href: "#gallery" },
-  { id: "about", label: L({ en: "About", th: "เกี่ยวกับ", zh: "关于", ja: "概要", ko: "소개" }), href: "#about" },
-  { id: "contact", label: L({ en: "Contact", th: "ติดต่อ", zh: "联系", ja: "お問い合わせ", ko: "문의" }), href: "#contact" },
+  {
+    id: "services",
+    label: L({
+      en: "Product & service",
+      th: "สินค้าและบริการ",
+      zh: "产品与服务",
+      ja: "製品とサービス",
+      ko: "제품 및 서비스",
+    }),
+    href: "#what-we-create",
+  },
+  {
+    id: "gallery",
+    label: L({
+      en: "Gallery",
+      th: "ผลงาน",
+      zh: "作品",
+      ja: "ギャラリー",
+      ko: "갤러리",
+    }),
+    href: "#work-updates",
+  },
+  {
+    id: "about",
+    label: L({
+      en: "About",
+      th: "เกี่ยวกับ",
+      zh: "关于",
+      ja: "概要",
+      ko: "소개",
+    }),
+    href: "#about",
+  },
+  {
+    id: "contact",
+    label: L({
+      en: "Contact",
+      th: "ติดต่อ",
+      zh: "联系",
+      ja: "お問い合わせ",
+      ko: "문의",
+    }),
+    href: "#contact",
+  },
 ];
 
 export const NAV_CONTACT_CTA = L({
@@ -234,11 +274,61 @@ export const GALLERY_VIEW_PROJECT = L({
 });
 
 export const GALLERY_ITEMS: GalleryItem[] = [
-  { id: "g1", src: "/gallery/placeholder-1.jpg", alt: L({ en: "Work 1", th: "ผลงานที่ 1", zh: "作品 1", ja: "作品 1", ko: "작업 1" }) },
-  { id: "g2", src: "/gallery/placeholder-2.jpg", alt: L({ en: "Work 2", th: "ผลงานที่ 2", zh: "作品 2", ja: "作品 2", ko: "작업 2" }) },
-  { id: "g3", src: "/gallery/placeholder-3.jpg", alt: L({ en: "Work 3", th: "ผลงานที่ 3", zh: "作品 3", ja: "作品 3", ko: "작업 3" }) },
-  { id: "g4", src: "/gallery/placeholder-4.jpg", alt: L({ en: "Work 4", th: "ผลงานที่ 4", zh: "作品 4", ja: "作品 4", ko: "작업 4" }) },
-  { id: "g5", src: "/gallery/placeholder-5.jpg", alt: L({ en: "Work 5", th: "ผลงานที่ 5", zh: "作品 5", ja: "作品 5", ko: "작업 5" }) },
+  {
+    id: "g1",
+    src: "/gallery/placeholder-1.jpg",
+    alt: L({
+      en: "Work 1",
+      th: "ผลงานที่ 1",
+      zh: "作品 1",
+      ja: "作品 1",
+      ko: "작업 1",
+    }),
+  },
+  {
+    id: "g2",
+    src: "/gallery/placeholder-2.jpg",
+    alt: L({
+      en: "Work 2",
+      th: "ผลงานที่ 2",
+      zh: "作品 2",
+      ja: "作品 2",
+      ko: "작업 2",
+    }),
+  },
+  {
+    id: "g3",
+    src: "/gallery/placeholder-3.jpg",
+    alt: L({
+      en: "Work 3",
+      th: "ผลงานที่ 3",
+      zh: "作品 3",
+      ja: "作品 3",
+      ko: "작업 3",
+    }),
+  },
+  {
+    id: "g4",
+    src: "/gallery/placeholder-4.jpg",
+    alt: L({
+      en: "Work 4",
+      th: "ผลงานที่ 4",
+      zh: "作品 4",
+      ja: "作品 4",
+      ko: "작업 4",
+    }),
+  },
+  {
+    id: "g5",
+    src: "/gallery/placeholder-5.jpg",
+    alt: L({
+      en: "Work 5",
+      th: "ผลงานที่ 5",
+      zh: "作品 5",
+      ja: "作品 5",
+      ko: "작업 5",
+    }),
+  },
 ];
 
 export const MARQUEE_TEXT = L({
@@ -366,11 +456,61 @@ export const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const POLICY_LINKS: PolicyLink[] = [
-  { id: "privacy", label: L({ en: "Privacy Policy", th: "นโยบายความเป็นส่วนตัว", zh: "隐私政策", ja: "プライバシーポリシー", ko: "개인정보 처리방침" }), href: "#" },
-  { id: "shipping", label: L({ en: "Shipping Policy", th: "นโยบายการจัดส่ง", zh: "配送政策", ja: "配送ポリシー", ko: "배송 정책" }), href: "#" },
-  { id: "terms", label: L({ en: "Terms of Service", th: "ข้อกำหนดในการใช้บริการ", zh: "服务条款", ja: "利用規約", ko: "이용약관" }), href: "#" },
-  { id: "refund", label: L({ en: "Refund Policy", th: "นโยบายการคืนเงิน", zh: "退款政策", ja: "返金ポリシー", ko: "환불 정책" }), href: "#" },
-  { id: "cookies", label: L({ en: "Cookie Settings", th: "การกำหนดลักษณะคุกกี้", zh: "Cookie 设置", ja: "Cookie設定", ko: "쿠키 설정" }), href: "#" },
+  {
+    id: "privacy",
+    label: L({
+      en: "Privacy Policy",
+      th: "นโยบายความเป็นส่วนตัว",
+      zh: "隐私政策",
+      ja: "プライバシーポリシー",
+      ko: "개인정보 처리방침",
+    }),
+    href: "#",
+  },
+  {
+    id: "shipping",
+    label: L({
+      en: "Shipping Policy",
+      th: "นโยบายการจัดส่ง",
+      zh: "配送政策",
+      ja: "配送ポリシー",
+      ko: "배송 정책",
+    }),
+    href: "#",
+  },
+  {
+    id: "terms",
+    label: L({
+      en: "Terms of Service",
+      th: "ข้อกำหนดในการใช้บริการ",
+      zh: "服务条款",
+      ja: "利用規約",
+      ko: "이용약관",
+    }),
+    href: "#",
+  },
+  {
+    id: "refund",
+    label: L({
+      en: "Refund Policy",
+      th: "นโยบายการคืนเงิน",
+      zh: "退款政策",
+      ja: "返金ポリシー",
+      ko: "환불 정책",
+    }),
+    href: "#",
+  },
+  {
+    id: "cookies",
+    label: L({
+      en: "Cookie Settings",
+      th: "การกำหนดลักษณะคุกกี้",
+      zh: "Cookie 设置",
+      ja: "Cookie設定",
+      ko: "쿠키 설정",
+    }),
+    href: "#",
+  },
 ];
 
 export const PARTNER_TRUSTED = L({

@@ -2,12 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLang } from "@/context/LangContext";
-import {
-  SERVICES,
-  SERVICES_KICKER,
-  SERVICES_TITLE,
-  SERVICES_INTRO,
-} from "@/constants";
+import { SERVICES } from "@/constants";
 
 export default function ServicesSection() {
   const { t } = useLang();
@@ -15,20 +10,6 @@ export default function ServicesSection() {
   return (
     <section id="services" className="py-24 bg-white scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-xl">
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#FF6B35] mb-4 block">
-              {t(SERVICES_KICKER)}
-            </span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-black leading-none">
-              {t(SERVICES_TITLE)}
-            </h2>
-          </div>
-          <p className="text-gray-500 max-w-sm text-sm font-medium leading-relaxed">
-            {t(SERVICES_INTRO)}
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border border-gray-100">
           {SERVICES.map((service, index) => (
             <motion.div

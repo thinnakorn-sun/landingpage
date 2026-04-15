@@ -33,13 +33,13 @@ export default function WorkUpdatesPanel() {
       transition={{ duration: 0.8, delay: 0.65 }}
       className="relative z-10 mt-14 w-full scroll-mt-28 shadow-[0_24px_80px_rgba(0,0,0,0.12)] md:mt-20 md:scroll-mt-32"
     >
-      <div className="relative min-h-[30rem] w-full sm:min-h-[36rem] md:min-h-[44rem] lg:min-h-[52rem] xl:min-h-[min(58rem,70vh)]">
+      <div className="w-full">
         <Image
           src="/pinahx-banner-main.png"
           alt="PINAHX Digital Studio — banner"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
+          width={1920}
+          height={1080}
+          className="block h-auto w-full"
           priority
         />
       </div>
@@ -52,12 +52,12 @@ export default function WorkUpdatesPanel() {
         <div className="mx-auto max-w-3xl">
           <h2
             id="work-updates-heading"
-            className="mb-6 text-center text-xl font-black uppercase tracking-tight text-black sm:mb-8 sm:text-2xl md:text-3xl"
+            className="mb-6 text-left text-4xl font-black uppercase tracking-tighter leading-none text-black sm:mb-8 sm:text-5xl md:text-6xl"
           >
             {t(WORK_UPDATES_TITLE)}
           </h2>
 
-          <div className="text-left text-base leading-relaxed text-neutral-700 sm:text-lg md:text-xl">
+          <div className="text-left text-base leading-[1.85] text-neutral-700 sm:text-lg md:text-xl">
             {lang === "ja" ? (
               <div className="space-y-4">
                 <p>
@@ -70,9 +70,12 @@ export default function WorkUpdatesPanel() {
                 </p>
               </div>
             ) : lang === "th" ? (
-              <p>
-                {t(WORK_UPDATES_LEAD)} <FacebookLink />
-              </p>
+              <div className="space-y-4">
+                <p>{t(WORK_UPDATES_LEAD)}</p>
+                <p>
+                  <FacebookLink />
+                </p>
+              </div>
             ) : (
               <div className="space-y-4">
                 <p>{t(WORK_UPDATES_LEAD)}</p>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLang } from "@/context/LangContext";
-import { GALLERY_HEADING, BRAND_TAGLINE, BRAND_MANIFESTO } from "@/constants";
+import { GALLERY_HEADING, BRAND_MANIFESTO } from "@/constants";
 
 export default function BrandSection() {
   const { t } = useLang();
@@ -22,15 +22,6 @@ export default function BrandSection() {
           >
             {t(GALLERY_HEADING)}
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-gray-500 text-base sm:text-lg font-medium leading-relaxed mb-6"
-          >
-            {t(BRAND_TAGLINE)}
-          </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
