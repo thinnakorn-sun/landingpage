@@ -4,11 +4,11 @@ const L = (o: Record<Lang, string>): L10nString => o;
 
 /** หัวข้อเดียวกันทุกภาษา (ตามบรีฟลูกค้า) */
 export const WORK_UPDATES_TITLE = L({
-  en: "OUR WORK & UPDATEDS",
-  th: "OUR WORK & UPDATEDS",
-  zh: "OUR WORK & UPDATEDS",
-  ja: "OUR WORK & UPDATEDS",
-  ko: "OUR WORK & UPDATEDS",
+  en: "OUR WORK & UPDATES",
+  th: "OUR WORK & UPDATES",
+  zh: "OUR WORK & UPDATES",
+  ja: "OUR WORK & UPDATES",
+  ko: "OUR WORK & UPDATES",
 });
 
 /** ข้อความก่อนลิงก์ Facebook — ไม่รวมโดเมน (EN/TH ต่อท้ายด้วยลิงก์ในบรรทัดเดียวกัน) */

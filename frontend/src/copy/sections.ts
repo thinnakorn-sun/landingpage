@@ -15,7 +15,7 @@ export const NAV_LINKS: NavLink[] = [
   {
     id: "services",
     label: L({
-      en: "Product & service",
+      en: "Products & Services",
       th: "สินค้าและบริการ",
       zh: "产品与服务",
       ja: "製品とサービス",
@@ -32,7 +32,7 @@ export const NAV_LINKS: NavLink[] = [
       ja: "ギャラリー",
       ko: "갤러리",
     }),
-    href: "#work-updates",
+    href: "#work-updates-heading",
   },
   {
     id: "about",

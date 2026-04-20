@@ -8,7 +8,7 @@ export default function ServicesSection() {
   const { t } = useLang();
 
   return (
-    <section id="services" className="py-24 bg-white scroll-mt-24">
+    <section id="services" className="bg-white py-12 scroll-mt-24 md:py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border border-gray-100">
           {SERVICES.map((service, index) => (

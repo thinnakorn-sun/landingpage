@@ -10,7 +10,7 @@ export default function BrandSection() {
   return (
     <section
       id="about"
-      className="scroll-mt-24 border-b border-gray-50 bg-white py-24"
+      className="scroll-mt-24 border-b border-gray-50 bg-white py-12 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-4xl text-center">

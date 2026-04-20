@@ -33,12 +33,14 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
             className={[
-              "mb-8 text-[11vw] font-black leading-[0.92] tracking-tighter sm:text-[9vw] lg:mb-10 lg:text-[5.25rem]",
-              lang === "en" ? "uppercase" : "normal-case",
+              "mb-8 text-[11vw] font-black leading-[1.06] sm:text-[9vw] lg:mb-10 lg:text-[5.25rem]",
+              lang === "en"
+                ? "uppercase tracking-tighter"
+                : "normal-case tracking-tight",
             ].join(" ")}
           >
             {lines.map((seg, i) => (
-              <span key={i} className="block">
+              <span key={i} className="mb-1 block last:mb-0">
                 <span className={toneClass(seg.tone)}>{seg.text}</span>
               </span>
             ))}

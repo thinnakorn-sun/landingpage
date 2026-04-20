@@ -8,12 +8,11 @@ import {
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import {
   BRAND_NAME,
   COPYRIGHT_YEAR,
-  POLICY_LINKS,
   ABOUT_TEXT,
   ABOUT_CTA,
   SOCIAL_LINKS,
@@ -62,6 +61,8 @@ const socialIcons: {
   },
 ];
 
+const phoneNumber = "0987418874";
+
 /**
  * ลำดับตามสเก็ตช์ลูกค้า (บน → ล่าง):
  * แบรนด์ → ข้อความแนะนำ → Contact us → ไอคอน 3 ปุ่ม → กล่อง LINE → อีเมล → © → ลิงก์นโยบายแถวเดียว
@@ -75,14 +76,16 @@ export default function Footer() {
       className="scroll-mt-28 border-t border-white/[0.07] bg-black text-white md:scroll-mt-32"
     >
       <div className="mx-auto flex w-full max-w-lg flex-col items-center px-6 py-20 text-center antialiased md:max-w-2xl md:py-28 lg:max-w-3xl">
-        {/* 1. PINAHX + DIGITAL STUDIO (แบบเดิมเฉพาะฟุตเตอร์) */}
+        {/* 1. โลโก้แบรนด์ */}
         <header className="mb-8 md:mb-10">
-          <p className="text-4xl font-black leading-none tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            {BRAND_NAME}
-          </p>
-          <p className="mt-2.5 text-[9px] font-medium uppercase tracking-[0.42em] text-neutral-400 md:mt-3 md:text-[10px]">
-            DIGITAL STUDIO
-          </p>
+          <Image
+            src="/pinahx-logo.jpg"
+            alt="PINAHX Digital Studio"
+            width={1024}
+            height={1024}
+            className="h-auto w-36 object-contain sm:w-40 md:w-44"
+            priority
+          />
         </header>
 
         {/* 2. ข้อความแนะนำ (เต็มความกว้างในกรอบ) */}
@@ -112,6 +115,13 @@ export default function Footer() {
               />
             </a>
           ))}
+          <a
+            href={`tel:${phoneNumber}`}
+            className="group relative flex h-[3.75rem] w-[3.75rem] shrink-0 items-center justify-center rounded-full border border-emerald-400/45 bg-gradient-to-b from-emerald-400/28 to-emerald-900/18 text-emerald-300 shadow-[0_6px_24px_rgba(0,0,0,0.35)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-110 hover:border-emerald-300/70 hover:from-emerald-400/38 hover:to-emerald-900/28 hover:shadow-[0_12px_40px_rgba(16,185,129,0.35)] active:translate-y-0 active:scale-[1.02] md:h-16 md:w-16"
+            aria-label={`Call ${phoneNumber}`}
+          >
+            <Phone className="h-7 w-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)] transition-transform duration-300 group-hover:scale-105 md:h-8 md:w-8" />
+          </a>
         </div>
 
         {/* 5. กล่อง LINE (ป้าย + QR) */}
@@ -151,30 +161,6 @@ export default function Footer() {
           © {COPYRIGHT_YEAR} {BRAND_NAME}
         </p>
 
-        {/* 8. ลิงก์นโยบาย — แถวเดียว (wrap บนมือถือ) */}
-        <nav
-          className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-y-2 text-center text-[10px] leading-relaxed text-neutral-500 md:text-[11px]"
-          aria-label="Legal"
-        >
-          {POLICY_LINKS.map((link, i) => (
-            <span key={link.id} className="inline-flex items-center">
-              {i > 0 ? (
-                <span
-                  className="select-none px-2 text-neutral-600 md:px-2.5"
-                  aria-hidden
-                >
-                  |
-                </span>
-              ) : null}
-              <a
-                href={link.href}
-                className="whitespace-nowrap px-0.5 transition-colors hover:text-neutral-300"
-              >
-                {t(link.label)}
-              </a>
-            </span>
-          ))}
-        </nav>
       </div>
     </footer>
   );

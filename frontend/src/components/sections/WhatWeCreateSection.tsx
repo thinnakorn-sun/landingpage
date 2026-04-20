@@ -10,7 +10,7 @@ export default function WhatWeCreateSection() {
   return (
     <section
       id="what-we-create"
-      className="scroll-mt-28 border-t border-gray-50 bg-white py-24 md:scroll-mt-32"
+      className="scroll-mt-28 border-t border-gray-50 bg-white py-12 md:scroll-mt-32 md:py-24"
     >
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
