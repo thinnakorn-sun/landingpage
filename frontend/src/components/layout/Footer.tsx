@@ -136,7 +136,7 @@ export default function Footer() {
         </div>
 
         {/* 5. QR ทั้ง 3 ช่อง: WhatsApp | LINE | WeChat */}
-        <div className="mb-10 flex w-full items-end justify-center gap-3 md:mb-12 md:gap-6">
+        <div className="mb-10 grid w-full max-w-xl grid-cols-1 gap-4 sm:grid-cols-2 md:mb-12 md:max-w-none md:grid-cols-3 md:gap-6">
           <div className="flex flex-col items-center">
             <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-neutral-300 md:text-xs">
               WHATSAPP
@@ -145,7 +145,7 @@ export default function Footer() {
               href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-2xl border border-white/10 bg-white p-4 shadow-[0_16px_50px_rgba(0,0,0,0.45)] transition-transform hover:scale-[1.02] md:p-5"
+              className="inline-flex w-[13.5rem] items-center justify-center rounded-2xl border border-white/10 bg-white p-3 shadow-[0_16px_50px_rgba(0,0,0,0.45)] transition-transform hover:scale-[1.02] sm:w-[12.5rem] md:w-auto md:p-5"
               aria-label="WhatsApp QR code"
             >
               <Image
@@ -153,13 +153,13 @@ export default function Footer() {
                 alt="WhatsApp QR code"
                 width={220}
                 height={220}
-                className="h-44 w-44 rounded-xl object-contain sm:h-48 sm:w-48 md:h-52 md:w-52"
-                sizes="(max-width: 768px) 176px, 220px"
+                className="h-36 w-36 rounded-xl object-contain sm:h-32 sm:w-32 md:h-52 md:w-52"
+                sizes="(max-width: 640px) 144px, (max-width: 768px) 128px, 220px"
               />
             </a>
           </div>
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center sm:col-span-2 md:col-span-1">
             <p className="mb-3 text-xs font-black uppercase tracking-[0.35em] text-[#06C755]">
               LINE
             </p>
@@ -167,7 +167,7 @@ export default function Footer() {
               href={SOCIAL_LINKS.line}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex flex-col items-center rounded-2xl border border-white/10 bg-white p-4 shadow-[0_16px_50px_rgba(0,0,0,0.45)] transition-transform hover:scale-[1.02] md:p-5"
+              className="inline-flex w-[13.5rem] flex-col items-center rounded-2xl border border-white/10 bg-white p-3 shadow-[0_16px_50px_rgba(0,0,0,0.45)] transition-transform hover:scale-[1.02] sm:w-[26rem] md:w-auto md:p-5"
               aria-label="LINE — scan QR code to add friend"
             >
               <Image
@@ -175,8 +175,8 @@ export default function Footer() {
                 alt="LINE QR code — PINAHX"
                 width={220}
                 height={220}
-                className="h-44 w-44 rounded-xl object-contain sm:h-48 sm:w-48 md:h-52 md:w-52"
-                sizes="(max-width: 768px) 176px, 220px"
+                className="h-36 w-36 rounded-xl object-contain sm:h-32 sm:w-32 md:h-52 md:w-52"
+                sizes="(max-width: 640px) 144px, (max-width: 768px) 128px, 220px"
               />
             </a>
           </div>
@@ -186,7 +186,7 @@ export default function Footer() {
               WECHAT
             </p>
             <div
-              className="inline-flex items-center rounded-2xl border border-white/10 bg-white p-4 shadow-[0_16px_50px_rgba(0,0,0,0.45)] md:p-5"
+              className="inline-flex w-[13.5rem] items-center justify-center rounded-2xl border border-white/10 bg-white p-3 shadow-[0_16px_50px_rgba(0,0,0,0.45)] sm:w-[12.5rem] md:w-auto md:p-5"
               aria-label="WeChat QR code"
             >
               <Image
@@ -194,8 +194,8 @@ export default function Footer() {
                 alt="WeChat QR code"
                 width={220}
                 height={220}
-                className="h-44 w-44 rounded-xl object-contain sm:h-48 sm:w-48 md:h-52 md:w-52"
-                sizes="(max-width: 768px) 176px, 220px"
+                className="h-36 w-36 rounded-xl object-contain sm:h-32 sm:w-32 md:h-52 md:w-52"
+                sizes="(max-width: 640px) 144px, (max-width: 768px) 128px, 220px"
               />
             </div>
           </div>
