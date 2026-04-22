@@ -32,13 +32,13 @@ export default function Navbar() {
           className="flex shrink-0 items-center py-1"
           onClick={handleNavClick}
         >
-          <div className="relative h-[2.55rem] w-[6.8rem] overflow-hidden sm:h-[2.8rem] sm:w-[7.5rem] md:h-[3rem] md:w-[8.2rem]">
+          <div className="relative h-[3.3rem] w-[12.4rem] sm:h-[3.4rem] sm:w-[12.8rem] md:h-[3.2rem] md:w-[11.8rem]">
             <Image
               src={BRAND_LOGO_SRC}
               alt="PINAHX Digital Studio"
               fill
-              className="object-cover object-center scale-[1.42]"
-              sizes="(max-width: 640px) 110px, (max-width: 1024px) 125px, 132px"
+              className="object-contain object-left"
+              sizes="(max-width: 640px) 198px, (max-width: 1024px) 205px, 189px"
               priority
             />
           </div>

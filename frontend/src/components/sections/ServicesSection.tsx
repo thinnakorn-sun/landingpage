@@ -4,6 +4,60 @@ import { motion } from "framer-motion";
 import { useLang } from "@/context/LangContext";
 import { SERVICES } from "@/constants";
 
+const serviceFacebookLinks: Record<
+  string,
+  { cta: string; links: { label: string; href: string }[] }
+> = {
+  "digital-products": {
+    cta: "Shop Now",
+    links: [
+      {
+        label: "www.facebook.com/groups/earntify",
+        href: "https://www.facebook.com/groups/earntify",
+      },
+    ],
+  },
+  "digital-content-writing": {
+    cta: "Join Us",
+    links: [
+      {
+        label: "www.facebook.com/dealreview.hub",
+        href: "https://www.facebook.com/dealreview.hub",
+      },
+      {
+        label: "www.facebook.com/lovedfirststory",
+        href: "https://www.facebook.com/lovedfirststory",
+      },
+    ],
+  },
+  "pinahx-products": {
+    cta: "Shop Now",
+    links: [
+      {
+        label: "www.facebook.com/groups/urban.select",
+        href: "https://www.facebook.com/groups/urban.select",
+      },
+      {
+        label: "www.facebook.com/groups/crystelle",
+        href: "https://www.facebook.com/groups/crystelle",
+      },
+      {
+        label: "www.facebook.com/aichixproparts",
+        href: "https://www.facebook.com/aichixproparts",
+      },
+    ],
+  },
+  "ai-advertising": {
+    cta: "Explore Our Work",
+    links: [
+      {
+        label: "www.facebook.com/groups/aivatar",
+        href: "https://www.facebook.com/groups/aivatar",
+      },
+    ],
+  },
+};
+
 export default function ServicesSection() {
   const { t } = useLang();
 
@@ -30,7 +84,23 @@ export default function ServicesSection() {
                 {t(service.description)}
               </p>
 
-              <div className="mt-auto pt-8">
+              <div className="mt-auto pt-6">
+                <div className="mb-4 flex flex-col items-start gap-1.5">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-black/75 transition-colors group-hover:text-white">
+                    {serviceFacebookLinks[service.id]?.cta}
+                  </p>
+                  {serviceFacebookLinks[service.id]?.links.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] font-medium text-gray-500 underline decoration-transparent transition-colors hover:text-[#FF6B35] hover:decoration-[#FF6B35] group-hover:text-gray-400"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
                 <div className="w-8 h-[2px] bg-gray-200 group-hover:bg-[#FF6B35] group-hover:w-12 transition-all duration-500" />
               </div>
             </motion.div>

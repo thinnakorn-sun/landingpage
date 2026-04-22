@@ -36,11 +36,6 @@ export default function WhatWeCreateSection() {
                     <p key={i}>{t(para)}</p>
                   ))}
                 </div>
-                {blockIndex === 0 ? (
-                  <div className="h-px w-full bg-gray-200 my-10 relative">
-                    <div className="absolute left-0 top-0 h-full w-12 bg-[#FF6B35]" />
-                  </div>
-                ) : null}
               </div>
             ))}
           </div>

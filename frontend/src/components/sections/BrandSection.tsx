@@ -5,7 +5,7 @@ import { useLang } from "@/context/LangContext";
 import { GALLERY_HEADING, BRAND_MANIFESTO } from "@/constants";
 
 export default function BrandSection() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
 
   return (
     <section
@@ -13,7 +13,7 @@ export default function BrandSection() {
       className="scroll-mt-24 border-b border-gray-50 bg-white py-12 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-5xl text-center">
           <motion.h2
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -27,7 +27,10 @@ export default function BrandSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-gray-600 text-sm sm:text-base font-medium leading-relaxed"
+            className={[
+              "text-gray-600 text-sm sm:text-base font-medium leading-relaxed",
+              lang === "zh" ? "md:whitespace-nowrap md:text-[1.02rem]" : "",
+            ].join(" ")}
           >
             {t(BRAND_MANIFESTO)}
           </motion.p>

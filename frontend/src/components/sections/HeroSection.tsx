@@ -103,23 +103,6 @@ export default function HeroSection() {
       {/* แบนเนอร์ + OUR WORK */}
       <WorkUpdatesPanel />
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.1, duration: 1 }}
-        className="absolute bottom-6 right-6 hidden items-center gap-6 md:flex lg:bottom-10 lg:right-10"
-      >
-        <span className="text-[9px] font-black uppercase tracking-[0.6em] text-gray-300">
-          SCROLL
-        </span>
-        <div className="relative h-px w-12 overflow-hidden bg-gradient-to-r from-gray-200 to-transparent">
-          <motion.div
-            animate={{ x: [-48, 48] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-            className="absolute left-0 top-0 h-full w-1/2 bg-[#FF6B35]"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }

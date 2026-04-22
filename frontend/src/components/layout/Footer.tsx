@@ -62,13 +62,19 @@ const socialIcons: {
 ];
 
 const phoneNumber = "0987418874";
+const phoneDisplay = "098-741-8874";
+const whatsappNumber = "66987418874";
+const officeAddress =
+  "Level 17 Alma Link Building, No. 25 Chidlom Road, Ploenchit, Lumpini, Pathumwan, Bangkok 10330";
+const officeMapHref =
+  "https://www.google.com/maps/search/?api=1&query=Level+17+Alma+Link+Building%2C+No.+25+Chidlom+Road%2C+Ploenchit%2C+Lumpini%2C+Pathumwan%2C+Bangkok+10330";
 
 /**
  * ลำดับตามสเก็ตช์ลูกค้า (บน → ล่าง):
  * แบรนด์ → ข้อความแนะนำ → Contact us → ไอคอน 3 ปุ่ม → กล่อง LINE → อีเมล → © → ลิงก์นโยบายแถวเดียว
  */
 export default function Footer() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
 
   return (
     <footer
@@ -77,19 +83,24 @@ export default function Footer() {
     >
       <div className="mx-auto flex w-full max-w-lg flex-col items-center px-6 py-20 text-center antialiased md:max-w-2xl md:py-28 lg:max-w-3xl">
         {/* 1. โลโก้แบรนด์ */}
-        <header className="mb-8 md:mb-10">
+        <header className="mb-8 flex w-full justify-center md:mb-10">
           <Image
-            src="/pinahx-logo.jpg"
+            src="/logo-footer.svg"
             alt="PINAHX Digital Studio"
-            width={1024}
-            height={1024}
-            className="h-auto w-36 object-contain sm:w-40 md:w-44"
+            width={520}
+            height={138}
+            className="h-auto w-48 object-contain sm:w-52 md:w-56"
             priority
           />
         </header>
 
         {/* 2. ข้อความแนะนำ (เต็มความกว้างในกรอบ) */}
-        <p className="mb-10 w-full max-w-xl text-pretty text-[0.9375rem] font-normal leading-[1.85] text-neutral-400 md:mb-12 md:max-w-2xl md:text-base">
+        <p
+          className={[
+            "mb-10 w-full text-pretty text-[0.9375rem] font-normal leading-[1.85] text-neutral-400 md:mb-12 md:max-w-none md:text-base",
+            lang === "zh" ? "md:whitespace-nowrap md:text-[0.95rem]" : "",
+          ].join(" ")}
+        >
           {t(ABOUT_TEXT)}
         </p>
 
@@ -124,27 +135,70 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* 5. กล่อง LINE (ป้าย + QR) */}
-        <div className="mb-10 flex w-full flex-col items-center md:mb-12">
-          <p className="mb-3 text-xs font-black uppercase tracking-[0.35em] text-[#06C755]">
-            LINE
-          </p>
-          <a
-            href={SOCIAL_LINKS.line}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex flex-col items-center rounded-2xl border border-white/10 bg-white p-4 shadow-[0_16px_50px_rgba(0,0,0,0.45)] transition-transform hover:scale-[1.02] md:p-5"
-            aria-label="LINE — scan QR code to add friend"
-          >
-            <Image
-              src="/pinahx-line-qr.png"
-              alt="LINE QR code — PINAHX"
-              width={220}
-              height={220}
-              className="h-44 w-44 rounded-xl object-contain sm:h-48 sm:w-48 md:h-52 md:w-52"
-              sizes="(max-width: 768px) 176px, 220px"
-            />
-          </a>
+        {/* 5. QR ทั้ง 3 ช่อง: WhatsApp | LINE | WeChat */}
+        <div className="mb-10 flex w-full items-end justify-center gap-3 md:mb-12 md:gap-6">
+          <div className="flex flex-col items-center">
+            <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-neutral-300 md:text-xs">
+              WHATSAPP
+            </p>
+            <a
+              href={`https://wa.me/${whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-2xl border border-white/10 bg-white p-4 shadow-[0_16px_50px_rgba(0,0,0,0.45)] transition-transform hover:scale-[1.02] md:p-5"
+              aria-label="WhatsApp QR code"
+            >
+              <Image
+                src="/whatsapp-qr.png"
+                alt="WhatsApp QR code"
+                width={220}
+                height={220}
+                className="h-44 w-44 rounded-xl object-contain sm:h-48 sm:w-48 md:h-52 md:w-52"
+                sizes="(max-width: 768px) 176px, 220px"
+              />
+            </a>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.35em] text-[#06C755]">
+              LINE
+            </p>
+            <a
+              href={SOCIAL_LINKS.line}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-col items-center rounded-2xl border border-white/10 bg-white p-4 shadow-[0_16px_50px_rgba(0,0,0,0.45)] transition-transform hover:scale-[1.02] md:p-5"
+              aria-label="LINE — scan QR code to add friend"
+            >
+              <Image
+                src="/pinahx-line-qr.png"
+                alt="LINE QR code — PINAHX"
+                width={220}
+                height={220}
+                className="h-44 w-44 rounded-xl object-contain sm:h-48 sm:w-48 md:h-52 md:w-52"
+                sizes="(max-width: 768px) 176px, 220px"
+              />
+            </a>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-neutral-300 md:text-xs">
+              WECHAT
+            </p>
+            <div
+              className="inline-flex items-center rounded-2xl border border-white/10 bg-white p-4 shadow-[0_16px_50px_rgba(0,0,0,0.45)] md:p-5"
+              aria-label="WeChat QR code"
+            >
+              <Image
+                src="/wechat-qr.png"
+                alt="WeChat QR code"
+                width={220}
+                height={220}
+                className="h-44 w-44 rounded-xl object-contain sm:h-48 sm:w-48 md:h-52 md:w-52"
+                sizes="(max-width: 768px) 176px, 220px"
+              />
+            </div>
+          </div>
         </div>
 
         {/* 6. อีเมล */}
@@ -156,10 +210,23 @@ export default function Footer() {
           {BRAND_EMAIL}
         </a>
 
+        <p className="mb-8 text-sm font-medium text-neutral-400 md:mb-10 md:text-base">
+          {phoneDisplay} (Thailand)
+        </p>
+
         {/* 7. © */}
         <p className="mb-8 text-xs text-neutral-500 md:mb-10 md:text-sm">
           © {COPYRIGHT_YEAR} {BRAND_NAME}
         </p>
+
+        <a
+          href={officeMapHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="max-w-3xl text-center text-xs font-medium leading-relaxed text-neutral-500 transition-colors hover:text-neutral-300 md:text-sm"
+        >
+          {officeAddress}
+        </a>
 
       </div>
     </footer>

@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 138" fill="none" role="img" aria-label="PINAHX Digital Studio">
   <text
-    x="0"
+    x="110"
     y="86"
-    fill="#0a0a0a"
+    fill="#F5F5F5"
     font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
     font-size="82"
     font-weight="900"
     letter-spacing="-0.045em"
   >PINAHX</text>
   <text
-    x="344"
+    x="454"
     y="22"
-    fill="#0a0a0a"
+    fill="#F5F5F5"
     font-family="'Noto Sans Hebrew', system-ui, -apple-system, 'Segoe UI', sans-serif"
     font-size="24"
     font-weight="800"
@@ -19,9 +19,9 @@
     unicode-bidi="bidi-override"
   >פִּנָּה</text>
   <text
-    x="0"
+    x="110"
     y="128"
-    fill="#111111"
+    fill="#9CA3AF"
     font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
     font-size="21"
     font-weight="700"

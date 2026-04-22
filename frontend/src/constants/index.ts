@@ -5,7 +5,7 @@ export * from "@/copy";
 
 export const BRAND_NAME = "PINAHX";
 /** โลโก้แบรนด์ (รวม PINAHX + DIGITAL STUDIO ในภาพเดียว) */
-export const BRAND_LOGO_SRC = "/pinahx-logo.jpg";
+export const BRAND_LOGO_SRC = "/logo.svg";
 export const BRAND_EMAIL = "teams.skillup@gmail.com";
 /** เบอร์โทรสำหรับลิงก์ `tel:` — ว่างไว้ได้ถ้ายังไม่ใช้ปุ่มโทร */
 export const BRAND_PHONE = "0987418874";
