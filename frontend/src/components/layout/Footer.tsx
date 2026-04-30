@@ -65,9 +65,9 @@ const phoneNumber = "0987418874";
 const phoneDisplay = "098-741-8874";
 const whatsappNumber = "66987418874";
 const officeAddress =
-  "Level 17 Alma Link Building, No. 25 Chidlom Road, Ploenchit, Lumpini, Pathumwan, Bangkok 10330";
+  "25 Alma Link Building, 17th Floor, Room 686 Soi Chidlom, Ploenchit Road, Lumpini, Pathumwan, Bangkok 10330, Thailand";
 const officeMapHref =
-  "https://www.google.com/maps/search/?api=1&query=Level+17+Alma+Link+Building%2C+No.+25+Chidlom+Road%2C+Ploenchit%2C+Lumpini%2C+Pathumwan%2C+Bangkok+10330";
+  "https://www.google.com/maps/search/?api=1&query=25+Alma+Link+Building%2C+17th+Floor%2C+Room+686+Soi+Chidlom%2C+Ploenchit+Road%2C+Lumpini%2C+Pathumwan%2C+Bangkok+10330%2C+Thailand";
 
 /**
  * ลำดับตามสเก็ตช์ลูกค้า (บน → ล่าง):
